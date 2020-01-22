@@ -12,7 +12,7 @@ class CardRandomizer {
     // initialize deck
     fun initializeDeckOfCards() {
         if(!shuffled) {
-            deckOfCards = ArrayList(mutableListOf("1C", "2C", "3C", "4C", "5C", "6C", "7C", "8C", "9C", "10C", "11C", "12C", "13C", "1D", "2D", "3D", "4D", "5D", "6D", "7D", "8D", "9D", "10D", "11D", "12D", "13D", "1H", "2H", "3H", "4H", "5H", "6H", "7H", "8H", "9H", "10H", "11H", "12H", "13H", "1S", "2S", "3S", "4S", "5S", "6S", "7S", "8S", "9S", "10S", "11S", "12S", "13S"))
+            deckOfCards = ArrayList(mutableListOf("C1", "C2", "C3", "C4", "C5", "C6", "C7", "C8", "C9", "C10", "C11", "C12", "C13", "D1", "D2", "D3", "D4", "D5", "D6", "D7", "D8", "D9", "D10", "D11", "D12", "D13", "H1", "H2", "H3", "H4", "H5", "H6", "H7", "H8", "H9", "H10", "H11", "H12", "H13", "S1", "S2", "S3", "S4", "S5", "S6", "S7", "S8", "S9", "S10", "S11", "S12", "S13"))
             deckOfCards.shuffle()
             shuffled = true
         }
@@ -23,9 +23,9 @@ class CardRandomizer {
 
         if(iteration < numberOfCards) {
             cardList.add(deckOfCards[iteration])
-            cardList.add(deckOfCards[iteration++])
-            cardList.add(deckOfCards[iteration++])
-            cardList.add(deckOfCards[iteration++])
+            cardList.add(deckOfCards[++iteration])
+            cardList.add(deckOfCards[++iteration])
+            cardList.add(deckOfCards[++iteration])
             iteration++
         }
 
