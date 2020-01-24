@@ -2,10 +2,13 @@ package com.shuvornb.cardgame
 
 import android.graphics.Bitmap
 import android.graphics.BitmapFactory
+import android.graphics.Color
 import android.os.Bundle
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import kotlinx.android.synthetic.main.activity_main.*
+import nl.dionsegijn.konfetti.models.Shape
+import nl.dionsegijn.konfetti.models.Size
 import java.io.IOException
 
 class MainActivity : AppCompatActivity() {
@@ -23,7 +26,13 @@ class MainActivity : AppCompatActivity() {
             cardRandomizer.initializeDeckOfCards()
             var randomCards = cardRandomizer.getFourRandomCards()
 
-            if(randomCards.isEmpty()) Toast.makeText(this, "All cards have been displayed!", Toast.LENGTH_SHORT).show()
+            txtViewScore.text = "Score: 0"
+            txtViewMaxScore.text = "Max Score: 0"
+
+            if(randomCards.isEmpty()) {
+                Toast.makeText(this, "All cards have been displayed!", Toast.LENGTH_SHORT).show()
+                txtViewScore.text = "Total Score: " + scoreCalculator.globalScore.toString()
+            }
             else {
 
                 largestPrime = scoreCalculator.calculateHighestPrime(randomCards)
@@ -66,12 +75,24 @@ class MainActivity : AppCompatActivity() {
         btnCalculateScore.setOnClickListener {
             scoreCalculator.calculateScore()
             val scoreOfThisRound = scoreCalculator.lastRoundScore.toString()
-            val scoreSoFar = scoreCalculator.globalScore.toString()
 
            // Log.i("SCORE", scoreCalculator.globalScore)
-            val score =
-                "You got $scoreOfThisRound points in this round. You could have got $largestPrime points. Your total score so far $scoreSoFar"
-            txtViewPoints.text = score
+            txtViewScore.text = "Score: $scoreOfThisRound"
+            txtViewMaxScore.text = "Max Score: $largestPrime"
+
+            if(scoreOfThisRound.toInt() == largestPrime) {
+                viewKonfetti.build()
+                    .addColors(Color.YELLOW, Color.GREEN, Color.MAGENTA)
+                    .setDirection(0.0, 359.0)
+                    .setSpeed(1f, 5f)
+                    .setFadeOutEnabled(true)
+                    .setTimeToLive(2000L)
+                    .addShapes(Shape.RECT, Shape.CIRCLE)
+                    .addSizes(Size(12))
+                    .setPosition(-50f, viewKonfetti.width + 50f, -50f, -50f)
+                    .streamFor(300, 5000L)
+
+            }
         }
     }
 

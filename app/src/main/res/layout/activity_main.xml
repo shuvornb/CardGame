@@ -68,12 +68,30 @@
         android:text="Calculate Score" />
 
     <TextView
-        android:id="@+id/txtViewPoints"
+        android:id="@+id/txtViewScore"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginBottom="186dp"
-        android:text="Points" />
+        android:layout_marginBottom="133dp"
+        android:text="Score: 0"
+        android:textSize="35dp" />
+
+    <TextView
+        android:id="@+id/txtViewMaxScore"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="62dp"
+        android:text="Max Score: 0"
+        android:textSize="35dp" />
+
+    <nl.dionsegijn.konfetti.KonfettiView
+        android:id="@+id/viewKonfetti"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true" />
 
 </RelativeLayout>
