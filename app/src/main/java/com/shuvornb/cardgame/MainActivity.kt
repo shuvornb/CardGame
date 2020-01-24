@@ -12,6 +12,7 @@ class MainActivity : AppCompatActivity() {
 
     var cardRandomizer = CardRandomizer()
     var scoreCalculator = ScoreCalculator()
+    var largestPrime = 1
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -24,6 +25,9 @@ class MainActivity : AppCompatActivity() {
 
             if(randomCards.isEmpty()) Toast.makeText(this, "All cards have been displayed!", Toast.LENGTH_SHORT).show()
             else {
+
+                largestPrime = scoreCalculator.calculateHighestPrime(randomCards)
+
                 val assetsBitmap1: Bitmap? = getBitmapFromAssets(randomCards[0] + ".png")
                 imgViewCard1.setImageBitmap(assetsBitmap1)
                 imgViewCard1.setTag(imgViewCard1.id, randomCards[0])
@@ -66,7 +70,7 @@ class MainActivity : AppCompatActivity() {
 
            // Log.i("SCORE", scoreCalculator.globalScore)
             val score =
-                "You got $scoreOfThisRound points in this round. You could have got X points. Your total score so far $scoreSoFar"
+                "You got $scoreOfThisRound points in this round. You could have got $largestPrime points. Your total score so far $scoreSoFar"
             txtViewPoints.text = score
         }
     }
