@@ -4,6 +4,7 @@ import android.graphics.Bitmap
 import android.graphics.BitmapFactory
 import android.graphics.Color
 import android.os.Bundle
+import android.widget.ImageView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import kotlinx.android.synthetic.main.activity_main.*
@@ -37,18 +38,22 @@ class MainActivity : AppCompatActivity() {
 
                 largestPrime = scoreCalculator.calculateHighestPrime(randomCards)
 
+                setColorOfAnImageView(imgViewCard1, 0)
                 val assetsBitmap1: Bitmap? = getBitmapFromAssets(randomCards[0] + ".png")
                 imgViewCard1.setImageBitmap(assetsBitmap1)
                 imgViewCard1.setTag(imgViewCard1.id, randomCards[0])
 
+                setColorOfAnImageView(imgViewCard2, 0)
                 val assetsBitmap2: Bitmap? = getBitmapFromAssets(randomCards[1] + ".png")
                 imgViewCard2.setImageBitmap(assetsBitmap2)
                 imgViewCard2.setTag(imgViewCard2.id, randomCards[1])
 
+                setColorOfAnImageView(imgViewCard3, 0)
                 val assetsBitmap3: Bitmap? = getBitmapFromAssets(randomCards[2] + ".png")
                 imgViewCard3.setImageBitmap(assetsBitmap3)
                 imgViewCard3.setTag(imgViewCard3.id, randomCards[2])
 
+                setColorOfAnImageView(imgViewCard4, 0)
                 val assetsBitmap4: Bitmap? = getBitmapFromAssets(randomCards[3] + ".png")
                 imgViewCard4.setImageBitmap(assetsBitmap4)
                 imgViewCard4.setTag(imgViewCard4.id, randomCards[3])
@@ -58,18 +63,22 @@ class MainActivity : AppCompatActivity() {
         imgViewCard1.setOnClickListener {
             //Toast.makeText(this, imgViewCard1.getTag(imgViewCard1.id).toString() + "Button", Toast.LENGTH_SHORT).show()
             scoreCalculator.addScore(imgViewCard1.getTag(imgViewCard1.id).toString())
+            setColorOfAnImageView(imgViewCard1, 50)
         }
 
         imgViewCard2.setOnClickListener {
             scoreCalculator.addScore(imgViewCard2.getTag(imgViewCard2.id).toString())
+            setColorOfAnImageView(imgViewCard2, 50)
         }
 
         imgViewCard3.setOnClickListener {
             scoreCalculator.addScore(imgViewCard3.getTag(imgViewCard3.id).toString())
+            setColorOfAnImageView(imgViewCard3, 50)
         }
 
         imgViewCard4.setOnClickListener {
             scoreCalculator.addScore(imgViewCard4.getTag(imgViewCard4.id).toString())
+            setColorOfAnImageView(imgViewCard4, 50)
         }
 
         btnCalculateScore.setOnClickListener {
@@ -104,5 +113,10 @@ class MainActivity : AppCompatActivity() {
             e.printStackTrace()
             null
         }
+    }
+
+    // change color of an ImageView
+    private fun setColorOfAnImageView(imgView: ImageView, transparency: Int) {
+        imgView.setColorFilter(Color.argb(transparency,0,0,0))
     }
 }
